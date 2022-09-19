@@ -1,0 +1,24 @@
+person:
+  userName: zhangsan
+  boss: true
+  birth: 2019/12/9
+  age: 18
+  interests:
+    - football
+    - soccer
+  animal: [cat, dog]
+  score: {english: 80, math: 90}
+  salarys:
+    - 9999.98
+    - 9999.99
+  pet:
+    name: dog
+    weight: 99
+  allPets:
+    sick:
+      - {name: dog, weight: 99}
+      - name: cat
+        weight: 88
+      - name: bird
+        weight: 77
+    healthy: [{name: tiger, weight: 100}, {name: lion, weight: 111}]
