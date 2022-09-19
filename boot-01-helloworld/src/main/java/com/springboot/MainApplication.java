@@ -29,7 +29,12 @@ public class MainApplication {
             System.out.println(name);
         }
 
-        // 3、从容器中获取组件
+
+        boolean tomcatPet = run.containsBean("tom");
+        boolean user01 = run.containsBean("User01");
+        System.out.println(user01);
+        System.out.println(tomcatPet);
+/*        // 3、从容器中获取组件
         Pet tom1 = run.getBean("tom", Pet.class);
         Pet tom2 = run.getBean("tom", Pet.class);
         System.out.println(tom1==tom2);
@@ -54,7 +59,8 @@ public class MainApplication {
             System.out.println(s);
         }
         DBHelper bean1 = run.getBean(DBHelper.class);
-        System.out.println(bean1);
+        System.out.println(bean1);*/
+
 
     }
 }

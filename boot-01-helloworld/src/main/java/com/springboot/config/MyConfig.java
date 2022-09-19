@@ -1,9 +1,13 @@
 package com.springboot.config;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.springboot.bean.Car;
 import com.springboot.bean.Pet;
 import com.springboot.bean.User;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -23,18 +27,22 @@ import org.springframework.context.annotation.Import;
  * 4、@Import({User.class, DBHelper.class})
  *   给容器中自动创造出这两个类型的组件,默认的组件名就是全类名
  */
+
 @Import({User.class, DBHelper.class}) // 导入指定类型组件
 @Configuration(proxyBeanMethods = true)// 告诉springboot这是一个配置类
+@EnableConfigurationProperties(Car.class) // 开启Car的属性配置绑定功能;把组件自动注册到容器中
+
 public class MyConfig {
+    @Bean("tom")  // 以tom为组件名，而不是默认的方法名
+    public Pet tomcatPet(){
+        return new Pet("tomcat");
+    }
+
+    @ConditionalOnBean(name = "tom")
     @Bean // 给容器中添加组件，以方法名作为组件id，返回类型就是组建类型，返回的值就是组件在容器中的实例
     public User User01(){
         User zhangsan = new User("张三", "18");
         zhangsan.setPet(tomcatPet());
         return zhangsan;
-    }
-
-    @Bean("tom")  // 以tom为组件名，而不是默认的方法名
-    public Pet tomcatPet(){
-        return new Pet("tomcat");
     }
 }
